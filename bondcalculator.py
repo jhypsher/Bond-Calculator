@@ -75,12 +75,14 @@ def calculate():
             convexity = calculate_convexity(face_value, coupon_rate, maturity_period, yield_to_maturity)
             result_label.config(text=f"Bond Price: {bond_price:.2f}\nDuration: {duration:.2f}\nConvexity: {convexity:.2f}")
 
+ 
         elif calculation_type.get() == "Yield":
             bond_price = float(bond_price_entry.get())
             ytm = calculate_yield_to_maturity(face_value, coupon_rate, maturity_period, bond_price)
-            duration = calculate_duration(face_value, coupon_rate, maturity_period, yield_to_maturity)
-            convexity = calculate_convexity(face_value, coupon_rate, maturity_period, yield_to_maturity)
-            result_label.config(text=f"Yield to Maturity: {yield_to_maturity:.4f}\nDuration: {duration:.2f}\nConvexity: {convexity:.2f}")
+            duration = calculate_duration(face_value, coupon_rate, maturity_period, ytm)
+            convexity = calculate_convexity(face_value, coupon_rate, maturity_period, ytm)
+            result_label.config(text=f"Yield to Maturity: {ytm:.4f}\nDuration: {duration:.2f}\nConvexity: {convexity:.2f}")
+
 
     except Exception as e:
         result_label.config(text=f"Error: {str(e)}")
